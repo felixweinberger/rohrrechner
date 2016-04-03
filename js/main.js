@@ -1,10 +1,12 @@
+// define angular app
 var app = angular.module('rohrrechner', []);
 
+// directive to enable processing of German number formatting
 app.directive('smartFloat', function ($filter) {
-    var FLOAT_REGEXP_1 = /^\$?\d+.(\d{3})*(\,\d*)$/; //Numbers like: 1.123,56
-    var FLOAT_REGEXP_2 = /^\$?\d+,(\d{3})*(\.\d*)$/; //Numbers like: 1,123.56
-    var FLOAT_REGEXP_3 = /^\$?\d+(\.\d*)?$/; //Numbers like: 1123.56
-    var FLOAT_REGEXP_4 = /^\$?\d+(\,\d*)?$/; //Numbers like: 1123,56
+    var FLOAT_REGEXP_1 = /^\$?\d+.(\d{3})*(\,\d*)$/; 	//Numbers like: 1.123,56
+    var FLOAT_REGEXP_2 = /^\$?\d+,(\d{3})*(\.\d*)$/; 	//Numbers like: 1,123.56
+    var FLOAT_REGEXP_3 = /^\$?\d+(\.\d*)?$/; 					//Numbers like: 1123.56
+    var FLOAT_REGEXP_4 = /^\$?\d+(\,\d*)?$/; 					//Numbers like: 1123,56
 
     return {
         require: 'ngModel',
@@ -37,6 +39,7 @@ app.directive('smartFloat', function ($filter) {
     };
 });
 
+// calculate weight per meter, total length and total weight once user enters sufficient information
 app.controller('rohrrechnerCtrl', function($scope) {
     // initialise vars for calculations
     $scope.diameter = "";
