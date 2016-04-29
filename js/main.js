@@ -24,16 +24,16 @@ app.directive('smartFloat', function ($filter) {
                 } else if (FLOAT_REGEXP_4.test(viewValue)) {
                         ctrl.$setValidity('float', true);
                         return parseFloat(viewValue.replace(',', '.'));
-                }else {
+                } else {
                     ctrl.$setValidity('float', false);
                     return undefined;
                 }
             });
 
             ctrl.$formatters.unshift(
-               function (modelValue) {
-                   return $filter('number')(parseFloat(modelValue) , 3);
-               }
+                function (modelValue) {
+                    return $filter('number')(parseFloat(modelValue) , 3);
+                }
            );
         }
     };
@@ -41,6 +41,7 @@ app.directive('smartFloat', function ($filter) {
 
 // calculate weight per meter, total length and total weight once user enters sufficient information
 app.controller('rohrrechnerCtrl', function($scope) {
+    
     // initialise vars for calculations
     $scope.diameter = "";
     $scope.thickness = "";
@@ -54,10 +55,10 @@ app.controller('rohrrechnerCtrl', function($scope) {
 
     // calculate new values on change to any of the parameters 
     $scope.$watchGroup(['diameter', 'thickness', 'length', 'number'], function(newValues, oldValues, scope) {
-		  if ($scope.diameter != "" && $scope.thickness != "") {
-			  $scope.weight = ($scope.diameter - $scope.thickness) * $scope.thickness * 0.0246615;
-			  $scope.totalLength = $scope.length * $scope.number;
-			  $scope.totalWeight = $scope.weight * $scope.length * $scope.number;
-		  }
-		});
+		if ($scope.diameter != "" && $scope.thickness != "") {
+		    $scope.weight = ($scope.diameter - $scope.thickness) * $scope.thickness * 0.0246615;
+			$scope.totalLength = $scope.length * $scope.number;
+			$scope.totalWeight = $scope.weight * $scope.length * $scope.number;
+		}
+	});
 });
