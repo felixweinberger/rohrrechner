@@ -4,7 +4,7 @@
 ## Lokale Entwicklung
 Die einfachste Methode die App weiterzuentwickeln ist durch das Modul `http-server`, verfügbar über NPM.
 
-```
+```sh
 cd ~/projects
 git clone https://github.com/felixweinberger/rohrrechner
 cd rohrrechner
